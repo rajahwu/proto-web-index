@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router';
 import { QueryClient } from '@tanstack/react-query';
 import IndexPage from '../features/index/IndexPage';
 import { indexLoader } from '../features/index/index.loader';

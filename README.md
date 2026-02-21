@@ -25,3 +25,17 @@ src/
 │   └── index/            # Contains components, loaders, slices, and routes for a specific feature
 ├── shared/               # Shared UI (Shadcn), Utils, and Hooks
 └── main.tsx              # Application entry point
+```
+
+## ✅ Node Contract (Reusable Bootstrap)
+
+This repo is a **node-web template** for Radiant Seven system surfaces.
+
+Conventions:
+- `src/app/*` owns app wiring (providers/router/store/clients)
+- `src/features/<name>/*` owns feature modules (loader, page, slice, api)
+- `src/shared/*` owns shared UI + utilities
+
+State ownership:
+- **React Router Loaders + React Query** own server state
+- **Redux Toolkit** owns client UI state only

@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router';
 import { Button } from '@/shared/ui/button'; // Shadcn example
 import { ThemeProvider } from '@clearline7/theme'; // Hypothetical usage
 
