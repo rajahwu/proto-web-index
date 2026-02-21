@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+# Proto Web Index App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A prototype web application built to test and validate a modern, high-performance React stack before integration into the `systems/_index/web` monorepo.
 
-Currently, two official plugins are available:
+## 🚀 Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project leverages a bleeding-edge, highly optimized stack:
+- **Framework:** React 19 + Vite + SWC
+- **Routing:** React Router 7 (utilizing the Data Loader pattern)
+- **Server State:** React Query (v5)
+- **Client State:** Redux Toolkit
+- **Styling:** Tailwind CSS 4 + Shadcn UI
+- **Backend/BaaS:** Supabase
+- **Custom Packages:** `@clearline7` ecosystem
+- **Testing & Docs:** Storybook 10, Vitest, Playwright, TypeDoc
 
-## React Compiler
+## 🏗️ Architecture & Folder Structure
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+The project is structured to seamlessly drop into the `systems` monorepo structure:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+```text
+src/
+├── app/                  # App-wide configuration (Providers, Router, Store, Supabase clients)
+├── features/             # Feature-based modules (e.g., Index, Auth)
+│   └── index/            # Contains components, loaders, slices, and routes for a specific feature
+├── shared/               # Shared UI (Shadcn), Utils, and Hooks
+└── main.tsx              # Application entry point
