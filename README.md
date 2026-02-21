@@ -23,6 +23,7 @@ src/
 ├── app/                  # App-wide configuration (Providers, Router, Store, Supabase clients)
 ├── features/             # Feature-based modules (e.g., Index, Auth)
 │   └── index/            # Contains components, loaders, slices, and routes for a specific feature
+|   └── lite-game/        
 ├── shared/               # Shared UI (Shadcn), Utils, and Hooks
 └── main.tsx              # Application entry point
 ```
