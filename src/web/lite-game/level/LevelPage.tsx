@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { QueryClient } from '@tanstack/react-query';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { supabase, LITE_GAME_TABLES as TABLES } from '@/app/supabase';
-import type { Level, Card } from '@/types/lite-game';
-import LevelHeader from '@/features/lite-game/level/LevelHeader';
-import CardDisplay from '@/features/lite-game/level/CardDisplay';
+import { supabase, LITE_GAME_TABLES } from '@/app/config/supabase';
+import type { Level, Card } from '@/web/lite-game/types/lite-game';
+import LevelHeader from '@/web/lite-game/level/LevelHeader';
+import CardDisplay from '@/web/lite-game/level/CardDisplay';
 
 export default function LevelPage({ queryClient }: { queryClient: QueryClient }) {
   queryClient; // Currently not used, but can be passed to loaders for pre-fetching in the future
@@ -33,7 +33,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
     async function fetchLevel() {
       try {
         const { data, error: levelError } = await supabase
-          .from(TABLES.LEVELS)
+          .from(LITE_GAME_TABLES.LEVELS)
           .select('*')
           .eq('id', parseInt(levelId || '1'))
           .single();
@@ -43,7 +43,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
 
         // Also fetch current player progress to sync Light/Dark
         const { data: progress, error: progressError } = await supabase
-          .from(TABLES.PLAYER_PROGRESS)
+          .from(LITE_GAME_TABLES.PLAYER_PROGRESS)
           .select('*')
           .eq('player_id', playerId)
           .single();
@@ -74,7 +74,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
     try {
       // Fetch all cards
       const { data: cards, error: cardsError } = await supabase
-        .from(TABLES.CARDS)
+        .from(LITE_GAME_TABLES.CARDS)
         .select('*');
 
       if (cardsError) throw cardsError;
@@ -85,7 +85,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
       setDrawnCard(randomCard);
 
       // Log event
-      await supabase.from(TABLES.EVENTS).insert({
+      await supabase.from(LITE_GAME_TABLES.EVENTS).insert({
         player_id: playerId,
         level_id: level?.id,
         event_type: 'card_drawn',
@@ -112,7 +112,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
       const newDark = currentDark + drawnCard.dark_reward;
 
       const { error: updateError } = await supabase
-        .from(TABLES.PLAYER_PROGRESS)
+        .from(LITE_GAME_TABLES.PLAYER_PROGRESS)
         .update({
           current_light: newLight,
           current_dark: newDark,
@@ -123,7 +123,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
       if (updateError) throw updateError;
 
       // Log event
-      await supabase.from(TABLES.EVENTS).insert({
+      await supabase.from(LITE_GAME_TABLES.EVENTS).insert({
         player_id: playerId,
         level_id: level?.id,
         event_type: 'card_claimed',

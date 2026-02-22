@@ -1,6 +1,6 @@
 // useGameState.ts
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/app/supabase";
+import { supabase } from "@/app/config/supabase";
 
 export const useGameState = (playerId: string) => {
   return useQuery({

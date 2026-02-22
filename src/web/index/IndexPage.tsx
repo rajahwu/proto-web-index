@@ -1,6 +1,5 @@
 import { useLoaderData, useNavigate } from 'react-router';
-import { Button } from '@/components/ui/button'; // Shadcn example
-import { ThemeProvider } from '@clearline7/theme'; // Hypothetical usage
+import { Button } from '@/components/ui/button';
 
 export default function IndexPage() {
   const data = useLoaderData() as { message: string };

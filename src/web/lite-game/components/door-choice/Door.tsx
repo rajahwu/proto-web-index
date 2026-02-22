@@ -1,9 +1,9 @@
 // DoorChoice.tsx
 import { useLoaderData } from 'react-router';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
-import type { Level } from '@/types/lite-game';
-import DoorCard from '@/features/lite-game/door-choice/DoorCard';
-import { selectDoor } from '@/features/lite-game/gameSlice';
+import type { Level } from '@/web/lite-game/types/lite-game';
+import DoorCard from '@/web/lite-game/components/door-choice/DoorCard';
+import { selectDoor } from '@/app/store/gameSlice';
 
 const DoorChoice = () => {
   const dispatch = useAppDispatch();

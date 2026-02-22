@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
-import { supabase, LITE_GAME_TABLES as TABLES } from '@/app/supabase';
-import { setLevel } from '@/features/lite-game/gameSlice';
-import type { Level } from '@/types/lite-game';
-import DoorCard from '@/features/lite-game/door-choice/DoorCard';
+import { supabase, LITE_GAME_TABLES } from '@/app/config/supabase';
+import { setLevel } from '@/app/store/gameSlice';
+import type { Level } from '@/web/lite-game/types/lite-game';
+import DoorCard from '@/web/lite-game/components/door-choice/DoorCard';
 
 export default function DoorChoicePage() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
-  
+
   const levelId = parseInt(searchParams.get('level') || '1');
   const { currentLight, currentDark } = useAppSelector(state => state.game);
   const playerId = localStorage.getItem('lite_game_player_id');
@@ -18,41 +18,52 @@ export default function DoorChoicePage() {
   const [level, setLevelData] = useState<Level | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [gameOver, setGameOver] = useState(false);
 
   // Fetch level data
   useEffect(() => {
     if (!playerId) {
       navigate('/lite-game/character-select');
       return;
+    } else if (isNaN(levelId) || levelId < 1) {
+      navigate('/lite-game');
+      return;
     }
-
-    async function fetchLevel() {
-      try {
-        const { data, error: levelError } = await supabase
-          .from(TABLES.LEVELS)
-          .select('*')
-          .eq('id', levelId)
-          .single();
-
-        if (levelError) throw levelError;
-        setLevelData(data);
-      } catch (err) {
-        console.error('Failed to load level:', err);
-        setError('Failed to load level data');
-      } finally {
-        setLoading(false);
-      }
-    }
-
     fetchLevel();
   }, [levelId, playerId, navigate]);
+  
+  useEffect(() => {
+    if (gameOver) {
+      setTimeout(() => { }, 2000); // Show game over message for 2 seconds before navigating
+      navigate('/lite-game/game-over');
+    }
+  }, [gameOver, navigate]);
+
+  async function fetchLevel() {
+    try {
+      const { data, error: levelError } = await supabase
+        .from(LITE_GAME_TABLES.LEVELS)
+        .select('*')
+        .eq('id', levelId)
+        .single();
+
+      if (levelError) throw levelError;
+      setLevelData(data);
+    } catch (err) {
+      console.error('Failed to load level:', err);
+      setError('Failed to load level data');
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   // Check door affordability
   const canAffordLightDoor = level ? currentLight >= level.light_door_cost : false;
   const canAffordDarkDoor = level ? currentDark >= level.dark_door_cost : false;
-  const canAffordSecretDoor = level 
-    ? currentLight >= level.secret_door_requirements.light && 
-      currentDark >= level.secret_door_requirements.dark
+  const canAffordSecretDoor = level
+    ? currentLight >= level.secret_door_requirements.light &&
+    currentDark >= level.secret_door_requirements.dark
     : false;
 
   // Handle door selection
@@ -63,11 +74,11 @@ export default function DoorChoicePage() {
       const nextLevel = levelId + 1;
 
       // Log the door choice event
-      await supabase.from(TABLES.EVENTS).insert({
+      await supabase.from(LITE_GAME_TABLES.EVENTS).insert({
         player_id: playerId,
         level_id: levelId,
         event_type: 'door_chosen',
-        event_data: { 
+        event_data: {
           door_type: doorType,
           light_spent: doorType === 'light' ? level.light_door_cost : 0,
           dark_spent: doorType === 'dark' ? level.dark_door_cost : 0,
@@ -76,7 +87,7 @@ export default function DoorChoicePage() {
 
       // Update player progress
       const { error: progressError } = await supabase
-        .from(TABLES.PLAYER_PROGRESS)
+        .from(LITE_GAME_TABLES.PLAYER_PROGRESS)
         .update({
           current_level: nextLevel,
           last_updated: new Date().toISOString(),
@@ -87,7 +98,7 @@ export default function DoorChoicePage() {
 
       // Update level completion tracking
       const { error: completionError } = await supabase
-        .from(TABLES.PLAYER_LEVEL_PROGRESS)
+        .from(LITE_GAME_TABLES.PLAYER_LEVEL_PROGRESS)
         .upsert({
           player_id: playerId,
           level_id: levelId,
@@ -103,7 +114,8 @@ export default function DoorChoicePage() {
 
       // Navigate to next level or game over
       if (nextLevel > 3) {
-        navigate('/lite-game/game-over');
+        setGameOver(true);
+        return;
       } else {
         navigate(`/lite-game/level/${nextLevel}`);
       }
@@ -197,6 +209,7 @@ export default function DoorChoicePage() {
             </p>
           </div>
         )}
+
 
         {/* Error Display */}
         {error && (

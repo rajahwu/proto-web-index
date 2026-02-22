@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { supabase, LITE_GAME_TABLES } from "./app/supabase";
+import { supabase, LITE_GAME_TABLES } from "./app/config/supabase";
 
 async function testConnection() {
   console.log("🔍 Testing Supabase connection...");

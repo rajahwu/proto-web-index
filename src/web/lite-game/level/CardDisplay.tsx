@@ -1,4 +1,4 @@
-import type { Card } from '@/types/lite-game';
+import type { Card } from '@/web/lite-game/types/lite-game';
 
 interface CardDisplayProps {
   card: Card;
