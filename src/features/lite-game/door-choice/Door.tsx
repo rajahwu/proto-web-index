@@ -1,4 +1,10 @@
 // DoorChoice.tsx
+import { useLoaderData } from 'react-router';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+import type { Level } from '../../../types/lite-game';
+import DoorCard from './DoorCard';
+import { selectDoor } from '../gameSlice';
+
 const DoorChoice = () => {
   const { currentLight, currentDark } = useAppSelector(state => state.game);
   const { data: level } = useLoaderData() as { data: Level };
@@ -34,3 +40,5 @@ const DoorChoice = () => {
     </div>
   );
 };
+
+export default DoorChoice;

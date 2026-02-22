@@ -4,12 +4,14 @@ interface GameState {
   currentLight: number;
   currentDark: number;
   currentLevel: number;
+  selectedDoor: "light" | "dark" | "secret" | null;
 }
 
 const initialState: GameState = {
   currentLight: 0,
   currentDark: 0,
   currentLevel: 1,
+  selectedDoor: null,
 };
 
 const gameSlice = createSlice({
@@ -25,6 +27,9 @@ const gameSlice = createSlice({
     setLevel: (state, action: PayloadAction<number>) => {
       state.currentLevel = action.payload;
     },
+    selectDoor: (state, action: PayloadAction<"light" | "dark" | "secret">) => {
+      state.selectedDoor = action.payload;
+    },
     syncProgress: (
       state,
       action: PayloadAction<{ currentLight: number; currentDark: number }>,
@@ -36,6 +41,6 @@ const gameSlice = createSlice({
   },
 });
 
-export const { addLight, addDark, setLevel, syncProgress, resetGame } =
+export const { addLight, addDark, setLevel, selectDoor, syncProgress, resetGame } =
   gameSlice.actions;
 export default gameSlice.reducer;
