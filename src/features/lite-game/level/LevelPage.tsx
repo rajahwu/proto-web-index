@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { QueryClient } from '@tanstack/react-query';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { supabase, LITE_GAME_TABLES as TABLES } from '../../../app/supabase';
-import type { Level, Card } from '../../../types/lite-game';
-import LevelHeader from './LevelHeader';
-import CardDisplay from './CardDisplay';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { supabase, LITE_GAME_TABLES as TABLES } from '@/app/supabase';
+import type { Level, Card } from '@/types/lite-game';
+import LevelHeader from '@/features/lite-game/level/LevelHeader';
+import CardDisplay from '@/features/lite-game/level/CardDisplay';
 
 export default function LevelPage({ queryClient }: { queryClient: QueryClient }) {
   queryClient; // Currently not used, but can be passed to loaders for pre-fetching in the future

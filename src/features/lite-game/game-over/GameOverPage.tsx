@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch } from '@/app/hooks';
 import { resetGame } from '../gameSlice';
-import { supabase, LITE_GAME_TABLES as TABLES } from '../../../app/supabase';
-import type { PlayerStats } from '../../../types/lite-game';
+import { supabase, LITE_GAME_TABLES as TABLES } from '@/app/supabase';
+import type { PlayerStats } from '@/types/lite-game';
 
 export default function GameOverPage() {
   const navigate = useNavigate();

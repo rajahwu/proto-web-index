@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
-import { supabase, LITE_GAME_TABLES as TABLES } from '../../../app/supabase';
-import { setLevel } from '../gameSlice';
-import type { Level } from '../../../types/lite-game';
-import DoorCard from './DoorCard';
+import { useAppSelector, useAppDispatch } from '@/app/hooks';
+import { supabase, LITE_GAME_TABLES as TABLES } from '@/app/supabase';
+import { setLevel } from '@/features/lite-game/gameSlice';
+import type { Level } from '@/types/lite-game';
+import DoorCard from '@/features/lite-game/door-choice/DoorCard';
 
 export default function DoorChoicePage() {
   const navigate = useNavigate();

@@ -1,9 +1,10 @@
-import { useLoaderData } from 'react-router';
-import { Button } from '@/shared/ui/button'; // Shadcn example
+import { useLoaderData, useNavigate } from 'react-router';
+import { Button } from '@/components/ui/button'; // Shadcn example
 import { ThemeProvider } from '@clearline7/theme'; // Hypothetical usage
 
 export default function IndexPage() {
   const data = useLoaderData() as { message: string };
+  const navigate = useNavigate();
 
   return (
     <div className="p-10">
@@ -11,7 +12,7 @@ export default function IndexPage() {
       <pre className="bg-slate-100 p-4 rounded">{JSON.stringify(data, null, 2)}</pre>
       
       <div className="mt-4 flex gap-2">
-        <Button onClick={() => console.log('Clicked')}>Shadcn Button</Button>
+        <Button onClick={() => navigate('/lite-game')}>Fallen Angels Lite Game</Button>
       </div>
     </div>
   );
