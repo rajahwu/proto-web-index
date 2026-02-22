@@ -1,6 +1,9 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+
 // gameSlice.ts
 const gameSlice = createSlice({
-  name: 'game',
+  name: "game",
   initialState: {
     currentLight: 0,
     currentDark: 0,
@@ -10,20 +13,36 @@ const gameSlice = createSlice({
     diceRoll: null,
   },
   reducers: {
-    addLight: (state, action) => {
-      state.currentLight += action.payload;
+    name: "game",
+    initialState: {
+      currentLight: 0,
+      currentDark: 0,
+      currentLevel: 1,
+      selectedDoor: null,
+      drawnCards: [],
+      diceRoll: null,
     },
-    addDark: (state, action) => {
-      state.currentDark += action.payload;
-    },
-    selectDoor: (state, action) => {
-      state.selectedDoor = action.payload; // 'light', 'dark', 'secret'
-    },
-    drawCard: (state, action) => {
-      state.drawnCards.push(action.payload);
-    },
-    rollDice: (state) => {
-      state.diceRoll = Math.floor(Math.random() * 6) + 1;
+    reducers: {
+      addLight: (state: any, action: any) => {
+        state.currentLight += action.payload;
+      },
+      addDark: (state: any, action: any) => {
+        state.currentDark += action.payload;
+      },
+      selectDoor: (state: any, action: any) => {
+        state.selectedDoor = action.payload; // 'light', 'dark', 'secret'
+      },
+      drawCard: (state: any, action: any) => {
+        state.drawnCards.push(action.payload);
+      },
+      rollDice: (state: any ) => {
+        state.diceRoll = Math.floor(Math.random() * 6) + 1;
+      },
     },
   },
 });
+
+export const { addLight, addDark, selectDoor, drawCard, rollDice } =
+  gameSlice.actions;
+
+export default gameSlice.reducer;
