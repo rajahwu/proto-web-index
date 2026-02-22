@@ -1,8 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
+import gameReducer from "../features/lite-game/gameSlice";
 
 export const store = configureStore({
   reducer: {
-    // Add slices here later
+    game: gameReducer,
   },
 });
 

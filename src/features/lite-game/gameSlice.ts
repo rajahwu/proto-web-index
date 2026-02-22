@@ -1,48 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface GameState {
+  currentLight: number;
+  currentDark: number;
+  currentLevel: number;
+}
 
-// gameSlice.ts
+const initialState: GameState = {
+  currentLight: 0,
+  currentDark: 0,
+  currentLevel: 1,
+};
+
 const gameSlice = createSlice({
   name: "game",
-  initialState: {
-    currentLight: 0,
-    currentDark: 0,
-    currentLevel: 1,
-    selectedDoor: null,
-    drawnCards: [],
-    diceRoll: null,
-  },
+  initialState,
   reducers: {
-    name: "game",
-    initialState: {
-      currentLight: 0,
-      currentDark: 0,
-      currentLevel: 1,
-      selectedDoor: null,
-      drawnCards: [],
-      diceRoll: null,
+    addLight: (state, action: PayloadAction<number>) => {
+      state.currentLight += action.payload;
     },
-    reducers: {
-      addLight: (state: any, action: any) => {
-        state.currentLight += action.payload;
-      },
-      addDark: (state: any, action: any) => {
-        state.currentDark += action.payload;
-      },
-      selectDoor: (state: any, action: any) => {
-        state.selectedDoor = action.payload; // 'light', 'dark', 'secret'
-      },
-      drawCard: (state: any, action: any) => {
-        state.drawnCards.push(action.payload);
-      },
-      rollDice: (state: any ) => {
-        state.diceRoll = Math.floor(Math.random() * 6) + 1;
-      },
+    addDark: (state, action: PayloadAction<number>) => {
+      state.currentDark += action.payload;
     },
+    setLevel: (state, action: PayloadAction<number>) => {
+      state.currentLevel = action.payload;
+    },
+    syncProgress: (
+      state,
+      action: PayloadAction<{ currentLight: number; currentDark: number }>,
+    ) => {
+      state.currentLight = action.payload.currentLight;
+      state.currentDark = action.payload.currentDark;
+    },
+    resetGame: () => initialState,
   },
 });
 
-export const { addLight, addDark, selectDoor, drawCard, rollDice } =
+export const { addLight, addDark, setLevel, syncProgress, resetGame } =
   gameSlice.actions;
-
 export default gameSlice.reducer;

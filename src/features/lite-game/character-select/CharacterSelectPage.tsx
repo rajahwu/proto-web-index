@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { QueryClient } from '@tanstack/react-query';
 import { supabase, LITE_GAME_TABLES as TABLES } from '../../../app/supabase';
 import { CHARACTERS, type CharacterOption } from './characters';
 import type { Player } from '../../../types/lite-game';
 
-export default function CharacterSelectPage() {
+export default function CharacterSelectPage({ queryClient }: { queryClient: QueryClient }) {
+  queryClient; // Currently not used, but can be passed to loaders for pre-fetching in the future
+  
   const navigate = useNavigate();
   const [selectedClass, setSelectedClass] = useState<CharacterOption['class'] | null>(null);
   const [characterName, setCharacterName] = useState('');
