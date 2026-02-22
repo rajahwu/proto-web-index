@@ -1,0 +1,1 @@
+select * from public.v_fa_game_bible order by section, key;
