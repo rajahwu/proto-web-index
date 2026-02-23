@@ -2,12 +2,14 @@
 import { useLoaderData } from 'react-router';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
 import type { Level } from '@/web/lite-game/types/lite-game';
-import DoorCard from '@/web/lite-game/components/door-choice/DoorCard';
-import { selectDoor } from '@/app/store/gameSlice';
+import DoorCard from '@/web/lite-game/pages/phases/door-choice/DoorCard';
+import { useGameState } from '@/web/lite-game/hooks/useGameState';
+import { attemptDoor } from '@/app/store/gameSlice';
 
 const DoorChoice = () => {
+  useGameState(); // Ensure game state is initialized
   const dispatch = useAppDispatch();
-  const { currentLight, currentDark } = useAppSelector(state => state.game);
+  const { currentLight, currentDark } = useAppSelector(state => state.gameEngine);
   const { data: level } = useLoaderData() as { data: Level };
 
   const canEnterLightDoor = currentLight >= level.light_door_cost;
@@ -23,14 +25,14 @@ const DoorChoice = () => {
         description=''
         cost={level.light_door_cost}
         canAfford={canEnterLightDoor}
-        onClick={() => dispatch(selectDoor('light'))}
+        onClick={() => dispatch(attemptDoor({ doorType: 'light', cost: level.light_door_cost }))}
       />
       <DoorCard
         type="dark"
         description=''
         cost={level.dark_door_cost}
         canAfford={canEnterDarkDoor}
-        onClick={() => dispatch(selectDoor('dark'))}
+        onClick={() => dispatch(attemptDoor({ doorType: 'dark', cost: level.dark_door_cost }))}
       />
       {canEnterSecretDoor && (
         <DoorCard
@@ -38,7 +40,7 @@ const DoorChoice = () => {
           description=''
           cost={level.secret_door_requirements.dark + ' Dark, ' + level.secret_door_requirements.light + ' Light'}
           canAfford={true}
-          onClick={() => dispatch(selectDoor('secret'))}
+          onClick={() => dispatch(attemptDoor({ doorType: 'secret', cost: level.secret_door_requirements.dark + level.secret_door_requirements.light }))}
         />
       )}
     </div>

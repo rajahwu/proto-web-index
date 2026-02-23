@@ -4,8 +4,8 @@ import { QueryClient } from '@tanstack/react-query';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { supabase, LITE_GAME_TABLES } from '@/app/config/supabase';
 import type { Level, Card } from '@/web/lite-game/types/lite-game';
-import LevelHeader from '@/web/lite-game/level/LevelHeader';
-import CardDisplay from '@/web/lite-game/level/CardDisplay';
+import LevelHeader from '@/web/lite-game/pages/phases/level/LevelHeader';
+import CardDisplay from '@/web/lite-game/pages/phases/level/CardDisplay';
 
 export default function LevelPage({ queryClient }: { queryClient: QueryClient }) {
   queryClient; // Currently not used, but can be passed to loaders for pre-fetching in the future
@@ -14,7 +14,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { currentLight, currentDark } = useAppSelector(state => state.game);
+  const { currentLight, currentDark } = useAppSelector(state => state.gameEngine);
   const playerId = localStorage.getItem('lite_game_player_id');
 
   const [level, setLevel] = useState<Level | null>(null);
@@ -52,7 +52,7 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
 
         // Sync Redux with DB state
         dispatch({
-          type: 'game/syncProgress', payload: {
+          type: 'gameEngine/syncProgress', payload: {
             currentLight: progress.current_light,
             currentDark: progress.current_dark,
           }
@@ -104,8 +104,8 @@ export default function LevelPage({ queryClient }: { queryClient: QueryClient })
 
     try {
       // Update Redux state
-      dispatch({ type: 'game/addLight', payload: drawnCard.light_reward });
-      dispatch({ type: 'game/addDark', payload: drawnCard.dark_reward });
+      dispatch({ type: 'gameEngine/addLight', payload: drawnCard.light_reward });
+      dispatch({ type: 'gameEngine/addDark', payload: drawnCard.dark_reward });
 
       // Update DB
       const newLight = currentLight + drawnCard.light_reward;

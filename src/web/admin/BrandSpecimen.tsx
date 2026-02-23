@@ -1,6 +1,6 @@
 import { useBrandTokens } from '@/web/admin/useBrandtokens';
 
-export default function BrandDashboardPage() {
+export default function BrandSpecimen() {
     const { data, isLoading, error } = useBrandTokens();
 
     if (isLoading) return <div className="p-10 text-slate-400">Loading tokens from lattice...</div>;

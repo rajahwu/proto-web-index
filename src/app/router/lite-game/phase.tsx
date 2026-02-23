@@ -1,12 +1,12 @@
 import type { RouteObject } from 'react-router';
 import type { QueryClient } from '@tanstack/react-query';
-import LiteGameHome from '@/web/lite-game/pages/LiteGameHome';
-import CharacterSelectPage from '@/web/lite-game/pages/CharacterSelectPage';
-import LevelPage from '@/web/lite-game/level/LevelPage';
-import DoorChoicePage from '@/web/lite-game/pages/DoorChoicePage';
-import GameOverPage from '@/web/lite-game/pages/GameOverPage';
+import LiteGameHome from '@/web/lite-game/pages/phases/title-start/LiteGameHome';
+import CharacterSelectPage from '@/web/lite-game/pages/phases/character-select/CharacterSelectPage';
+import LevelPage from '@/web/lite-game/pages/phases/level/LevelPage';
+import DoorChoicePage from '@/web/lite-game/pages/phases/door-choice/DoorChoicePage';
+import GameOverPage from '@/web/lite-game/pages/phases/game-over/GameOverPage';
 
-export const liteGameRoutes = (queryClient: QueryClient): RouteObject[] => [
+export const liteGamePhaseRoutes = (queryClient: QueryClient): RouteObject[] => [
   {
     path: '/lite-game',
     element: <LiteGameHome />,

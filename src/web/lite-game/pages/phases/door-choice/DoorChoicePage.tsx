@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { useAppSelector, useAppDispatch } from '@/app/hooks';
 import { supabase, LITE_GAME_TABLES } from '@/app/config/supabase';
-import { setLevel } from '@/app/store/gameSlice';
 import type { Level } from '@/web/lite-game/types/lite-game';
-import DoorCard from '@/web/lite-game/components/door-choice/DoorCard';
+import { setLevel } from '@/app/store/gameSlice';
+import DoorCard from '@/web/lite-game/pages/phases/door-choice/DoorCard';
 
 export default function DoorChoicePage() {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ export default function DoorChoicePage() {
   const [searchParams] = useSearchParams();
 
   const levelId = parseInt(searchParams.get('level') || '1');
-  const { currentLight, currentDark } = useAppSelector(state => state.game);
+  const { currentLight, currentDark } = useAppSelector(state => state.gameEngine);
   const playerId = localStorage.getItem('lite_game_player_id');
 
   const [level, setLevelData] = useState<Level | null>(null);

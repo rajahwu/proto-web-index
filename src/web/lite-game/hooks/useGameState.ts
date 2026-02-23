@@ -1,17 +1,17 @@
-// useGameState.ts
-import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/app/config/supabase";
+// src/web/lite-game/hooks/useGameState.ts
+import { useSelector, useDispatch } from 'react-redux';
+import { type RootState } from '@/app/store/store';
+import { attemptDoor, playCard } from '@/app/store/gameSlice';
 
-export const useGameState = (playerId: string) => {
-  return useQuery({
-    queryKey: ['gameState', playerId],
-    queryFn: async () => {
-      const { data } = await supabase
-        .from('players')
-        .select('*')
-        .eq('id', playerId)
-        .single();
-      return data;
-    },
-  });
-};
+export function useGameState() {
+  const dispatch = useDispatch();
+  const state = useSelector((state: RootState) => state.gameEngine);
+
+  return {
+    ...state,
+    tryDoor: (type: 'LIGHT' | 'DARK' | 'SECRET', cost: number) => 
+      dispatch(attemptDoor({ doorType: type.toLowerCase() as "light" | "dark" | "secret", cost })),
+    draftCard: (light: number, dark: number) => 
+      dispatch(playCard({ lightDelta: light, darkDelta: dark }))
+  };
+}

@@ -11,7 +11,10 @@ export default function IndexPage() {
       <pre className="bg-slate-100 p-4 rounded">{JSON.stringify(data, null, 2)}</pre>
       
       <div className="mt-4 flex gap-2">
+        <Button onClick={() => navigate('/admin')}>Admin Dashboard</Button>
+        <div className="w-px bg-slate-300" />
         <Button onClick={() => navigate('/lite-game')}>Fallen Angels Lite Game</Button>
+        <Button onClick={() => navigate('/codex')}>Vessel Lore</Button>
       </div>
     </div>
   );
