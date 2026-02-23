@@ -5,7 +5,6 @@ import gameReducer from "@/app/store/gameSlice";
 export const store = configureStore({
   reducer: {
     gameEngine: gameReducer,
-    gameSlice: gameReducer,
   },
 });
 
