@@ -1,5 +1,6 @@
 import { Link, type RouteObject } from 'react-router';
 import BrandDashboardPage from '@/web/admin/pages/BrandOpsDashboard';
+import VesselRegistry from '@/web/admin/pages/VesselRegistry';
 
 export const adminRoutes: RouteObject[] = [
   {
@@ -9,9 +10,11 @@ export const adminRoutes: RouteObject[] = [
       <p className="text-lg text-slate-600">Welcome to the admin dashboard. Use the links below to navigate.</p>
       <div className="mt-6 flex flex-col gap-4">
         <Link to="/admin/brand-dashboard" className="text-blue-500 hover:underline">Brand Dashboard</Link>
-        {/* Add more admin links here */}
+        <Link to="/admin/vessel-registry" className="text-blue-500 hover:underline">Vessel Registry</Link>
       </div>
     </div>
   },
   { path: '/admin/brand-dashboard', element: <BrandDashboardPage /> },
+  { path: '/admin/vessel-registry', element: <VesselRegistry /> }
+
 ];

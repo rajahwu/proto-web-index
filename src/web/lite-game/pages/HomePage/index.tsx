@@ -12,7 +12,7 @@ export default function LiteGameHome() {
 
             <div className="space-y-4 flex flex-col w-64">
                 <button
-                    onClick={() => navigate('/lite-game/title-start')}
+                    onClick={() => navigate('/lite-game/run-loop')} // <-- Link to the new page
                     className="border border-[#FFF9E6]/30 text-[#FFF9E6] py-3 hover:bg-[#FFF9E6]/10 transition uppercase tracking-widest"
                 >
                     Initiate Sequence

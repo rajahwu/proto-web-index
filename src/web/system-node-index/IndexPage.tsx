@@ -13,7 +13,7 @@ export default function IndexPage() {
       <div className="mt-4 flex gap-2">
         <Button onClick={() => navigate('/admin')}>Admin Dashboard</Button>
         <div className="w-px bg-slate-300" />
-        <Button onClick={() => navigate('/lite-game')}>Fallen Angels Lite Game</Button>
+        <Button onClick={() => navigate('/lite-game/run-loop')}>Fallen Angels Lite Game</Button>
         <Button onClick={() => navigate('/codex')}>Vessel Lore</Button>
       </div>
     </div>
