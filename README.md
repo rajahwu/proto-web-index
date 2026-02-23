@@ -1,42 +1,89 @@
-# Proto Web Index App
+# Proto Index Lite Game
 
-A prototype web application built to test and validate a modern, high-performance React stack before integration into the `systems/_index/web` monorepo.
+A Supabase-backed prototype for the **Fallen Angels** lite game, admin brand-ops dashboard, and game-lore codex — built on a bleeding-edge React stack.
 
-## 🚀 Tech Stack
+## Tech Stack
 
-This project leverages a bleeding-edge, highly optimized stack:
-- **Framework:** React 19 + Vite + SWC
-- **Routing:** React Router 7 (utilizing the Data Loader pattern)
-- **Server State:** React Query (v5)
-- **Client State:** Redux Toolkit
+- **Framework:** React 19 + Vite 7 + SWC
+- **Routing:** React Router 7 (composable sub-route modules)
+- **Server State:** React Query v5
+- **Client State:** Redux Toolkit — game engine state machine (`gameSlice.ts`)
 - **Styling:** Tailwind CSS 4 + Shadcn UI
-- **Backend/BaaS:** Supabase
+- **Backend/BaaS:** Supabase (tables prefixed `lite_game___*`)
 - **Custom Packages:** `@clearline7` ecosystem
 - **Testing & Docs:** Storybook 10, Vitest, Playwright, TypeDoc
 
-## 🏗️ Architecture & Folder Structure
-
-The project is structured to seamlessly drop into the `systems` monorepo structure:
+## Architecture
 
 ```text
 src/
-├── app/                  # App-wide configuration (Providers, Router, Store, Supabase clients)
-├── features/             # Feature-based modules (e.g., Index, Auth)
-│   └── index/            # Contains components, loaders, slices, and routes for a specific feature
-|   └── lite-game/        
-├── shared/               # Shared UI (Shadcn), Utils, and Hooks
-└── main.tsx              # Application entry point
+├── app/                          # App wiring
+│   ├── config/                   #   config.ts, supabase.ts (env validation + table constants)
+│   ├── store/                    #   store.ts, gameSlice.ts (Redux state machine)
+│   ├── hooks/                    #   useAppDispatch, useAppSelector (typed Redux hooks)
+│   ├── router/                   #   Composable sub-route modules
+│   │   ├── system-node-index.tsx #     / index route
+│   │   ├── admin.tsx             #     /admin/* brand-ops routes
+│   │   └── lite-game/
+│   │       ├── phase.tsx         #     /lite-game/* game phase routes
+│   │       └── codex.tsx         #     /codex/* lore routes
+│   ├── router.tsx                #   Root router composition
+│   └── main.tsx                  #   Entry point
+├── web/                          # Feature UI grouped by domain
+│   ├── lite-game/
+│   │   ├── hooks/                #   useGameState (Redux convenience wrapper)
+│   │   ├── types/                #   lite-game.ts, characters.ts
+│   │   ├── components/           #   (scaffolding)
+│   │   └── pages/
+│   │       ├── HomePage/         #   V-00 hub page
+│   │       └── phases/           #   One dir per GamePhase
+│   │           ├── title-start/
+│   │           ├── character-select/
+│   │           ├── level/
+│   │           ├── door-choice/
+│   │           └── game-over/
+│   ├── game-lore/                #   Codex pages (vessel lore)
+│   ├── admin/                    #   Brand-ops dashboard + sprint tracker
+│   └── index/                    #   System node index page
+├── components/ui/                # Shadcn UI primitives
+├── lib/                          # Shared utilities
+└── shared/                       # Shared UI (scaffolding)
 ```
 
-## ✅ Node Contract (Reusable Bootstrap)
+## Game Engine — State Machine
 
-This repo is a **node-web template** for Radiant Seven system surfaces.
+The core game loop is driven by a Redux slice (`src/app/store/gameSlice.ts`) mounted at `state.gameEngine`. It defines 8 phases:
 
-Conventions:
-- `src/app/*` owns app wiring (providers/router/store/clients)
-- `src/features/<name>/*` owns feature modules (loader, page, slice, api)
-- `src/shared/*` owns shared UI + utilities
+```
+TITLE → CHARACTER_SELECT → STAGING → CARD_DRAFT → LEVEL_PLAY → DOOR_CHOICE → DUDAEL_DROP → GAME_OVER
+```
 
-State ownership:
-- **React Router Loaders + React Query** own server state
-- **Redux Toolkit** owns client UI state only
+Key actions: `initiateSequence`, `selectVessel`, `playCard`, `attemptDoor`, `syncProgress`, `terminateRun`, `resetGame`.
+
+**State ownership rules:**
+- **Redux** owns all ephemeral run state (phase, vessel, light/dark, level, door).
+- **React Query** handles server reads (brand tokens, admin data).
+- **Supabase** is only written to at run boundaries (character creation, game over) — not per-action.
+- **localStorage** is a legacy pattern being removed. New code must not use it.
+
+## Commands
+
+```bash
+pnpm install          # Install dependencies
+pnpm dev              # Start dev server
+pnpm build            # Type-check + production build
+pnpm lint             # ESLint
+pnpm storybook        # Storybook dev server
+pnpm build-storybook  # Static Storybook build
+```
+
+## Environment Variables
+
+Required in `.env` (see `.env.example`):
+
+```
+VITE_SUPABASE_URL=<your-supabase-url>
+VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=<your-anon-key>
+```
+
+Validated at startup by `assertConfig()` in `src/app/config/config.ts`.
