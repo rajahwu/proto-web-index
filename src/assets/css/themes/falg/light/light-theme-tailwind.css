@@ -1,0 +1,73 @@
+@theme falg-theme-light {
+    --color-golden-orange-50: hsl(36.5 92% 95.1%);
+    --color-golden-orange-100: hsl(38.3 92.2% 90%);
+    --color-golden-orange-200: hsl(38.3 92.2% 80%);
+    --color-golden-orange-300: hsl(37.9 92.2% 70%);
+    --color-golden-orange-400: hsl(38 92.2% 60%);
+    --color-golden-orange-500: hsl(38 92.2% 50%);
+    --color-golden-orange-600: hsl(38 92.2% 40%);
+    --color-golden-orange-700: hsl(37.9 92.2% 30%);
+    --color-golden-orange-800: hsl(38.3 92.2% 20%);
+    --color-golden-orange-900: hsl(38.3 92.2% 10%);
+    --color-golden-orange-950: hsl(38.2 94.3% 6.9%);
+
+    --color-amber-gold-50: hsl(45 92.3% 94.9%);
+    --color-amber-gold-100: hsl(42.9 96.1% 90%);
+    --color-amber-gold-200: hsl(42.9 96.1% 80%);
+    --color-amber-gold-300: hsl(42.9 96.1% 70%);
+    --color-amber-gold-400: hsl(42.9 96.1% 60%);
+    --color-amber-gold-500: hsl(43.1 96.1% 50%);
+    --color-amber-gold-600: hsl(42.9 96.1% 40%);
+    --color-amber-gold-700: hsl(42.9 96.1% 30%);
+    --color-amber-gold-800: hsl(42.9 96.1% 20%);
+    --color-amber-gold-900: hsl(42.9 96.1% 10%);
+    --color-amber-gold-950: hsl(42.4 94.4% 7.1%);
+
+    --color-lemon-chiffon-50: hsl(50 92.3% 94.9%);
+    --color-lemon-chiffon-100: hsl(47.8 96.1% 90%);
+    --color-lemon-chiffon-200: hsl(47.8 96.1% 80%);
+    --color-lemon-chiffon-300: hsl(48.2 96.1% 70%);
+    --color-lemon-chiffon-400: hsl(48.1 96.1% 60%);
+    --color-lemon-chiffon-500: hsl(48 96.1% 50%);
+    --color-lemon-chiffon-600: hsl(48.1 96.1% 40%);
+    --color-lemon-chiffon-700: hsl(48.2 96.1% 30%);
+    --color-lemon-chiffon-800: hsl(47.8 96.1% 20%);
+    --color-lemon-chiffon-900: hsl(47.8 96.1% 10%);
+    --color-lemon-chiffon-950: hsl(47.6 94.4% 7.1%);
+
+    --color-deep-space-blue-50: hsl(217.5 30.8% 94.9%);
+    --color-deep-space-blue-100: hsl(215.3 33.3% 90%);
+    --color-deep-space-blue-200: hsl(217.1 33.3% 80%);
+    --color-deep-space-blue-300: hsl(216.5 33.3% 70%);
+    --color-deep-space-blue-400: hsl(217.1 33.3% 60%);
+    --color-deep-space-blue-500: hsl(216.7 33.3% 50%);
+    --color-deep-space-blue-600: hsl(217.1 33.3% 40%);
+    --color-deep-space-blue-700: hsl(216.5 33.3% 30%);
+    --color-deep-space-blue-800: hsl(217.1 33.3% 20%);
+    --color-deep-space-blue-900: hsl(215.3 33.3% 10%);
+    --color-deep-space-blue-950: hsl(220 33.3% 7.1%);
+
+    --color-bright-snow-50: hsl(210 38.5% 94.9%);
+    --color-bright-snow-100: hsl(208.6 41.2% 90%);
+    --color-bright-snow-200: hsl(210 39.2% 80%);
+    --color-bright-snow-300: hsl(210.5 39.9% 70%);
+    --color-bright-snow-400: hsl(210 40.2% 60%);
+    --color-bright-snow-500: hsl(210.6 40.2% 50.2%);
+    --color-bright-snow-600: hsl(210 40.2% 40%);
+    --color-bright-snow-700: hsl(210.5 39.9% 30%);
+    --color-bright-snow-800: hsl(210 39.2% 20%);
+    --color-bright-snow-900: hsl(211.4 41.2% 10%);
+    --color-bright-snow-950: hsl(210 38.9% 7.1%);
+
+    --color-alice-blue-50: hsl(210 30.8% 94.9%);
+    --color-alice-blue-100: hsl(215.3 33.3% 90%);
+    --color-alice-blue-200: hsl(213.8 31.4% 80%);
+    --color-alice-blue-300: hsl(214.3 32% 70%);
+    --color-alice-blue-400: hsl(213.6 32.4% 60%);
+    --color-alice-blue-500: hsl(214.1 31.8% 50%);
+    --color-alice-blue-600: hsl(213.6 32.4% 40%);
+    --color-alice-blue-700: hsl(214.3 32% 30%);
+    --color-alice-blue-800: hsl(213.8 31.4% 20%);
+    --color-alice-blue-900: hsl(215.3 33.3% 10%);
+    --color-alice-blue-950: hsl(215 33.3% 7.1%);
+}

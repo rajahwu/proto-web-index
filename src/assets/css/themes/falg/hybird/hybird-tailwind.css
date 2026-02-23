@@ -1,0 +1,73 @@
+@theme hybird-ui-secert {
+    --color-amber-gold-50: hsl(45 92.3% 94.9%);
+    --color-amber-gold-100: hsl(42.9 96.1% 90%);
+    --color-amber-gold-200: hsl(42.9 96.1% 80%);
+    --color-amber-gold-300: hsl(42.9 96.1% 70%);
+    --color-amber-gold-400: hsl(42.9 96.1% 60%);
+    --color-amber-gold-500: hsl(43.1 96.1% 50%);
+    --color-amber-gold-600: hsl(42.9 96.1% 40%);
+    --color-amber-gold-700: hsl(42.9 96.1% 30%);
+    --color-amber-gold-800: hsl(42.9 96.1% 20%);
+    --color-amber-gold-900: hsl(42.9 96.1% 10%);
+    --color-amber-gold-950: hsl(42.4 94.4% 7.1%);
+
+    --color-metallic-gold-50: hsl(43.3 69.2% 94.9%);
+    --color-metallic-gold-100: hsl(43.8 72.5% 90%);
+    --color-metallic-gold-200: hsl(44.2 70.6% 80%);
+    --color-metallic-gold-300: hsl(44 71.2% 70%);
+    --color-metallic-gold-400: hsl(44.2 70.6% 60%);
+    --color-metallic-gold-500: hsl(44.1 71% 50%);
+    --color-metallic-gold-600: hsl(44.2 70.6% 40%);
+    --color-metallic-gold-700: hsl(44 71.2% 30%);
+    --color-metallic-gold-800: hsl(44.2 70.6% 20%);
+    --color-metallic-gold-900: hsl(43.8 72.5% 10%);
+    --color-metallic-gold-950: hsl(43.8 72.2% 7.1%);
+
+    --color-slate-grey-50: hsl(210 15.4% 94.9%);
+    --color-slate-grey-100: hsl(213.3 17.6% 90%);
+    --color-slate-grey-200: hsl(213.8 15.7% 80%);
+    --color-slate-grey-300: hsl(216 16.3% 70%);
+    --color-slate-grey-400: hsl(215.6 15.7% 60%);
+    --color-slate-grey-500: hsl(215.1 16.1% 50%);
+    --color-slate-grey-600: hsl(215.6 15.7% 40%);
+    --color-slate-grey-700: hsl(216 16.3% 30%);
+    --color-slate-grey-800: hsl(213.8 15.7% 20%);
+    --color-slate-grey-900: hsl(213.3 17.6% 10%);
+    --color-slate-grey-950: hsl(220 16.7% 7.1%);
+
+    --color-jade-green-50: hsl(143.3 69.2% 94.9%);
+    --color-jade-green-100: hsl(142.7 72.5% 90%);
+    --color-jade-green-200: hsl(141.7 70.6% 80%);
+    --color-jade-green-300: hsl(142 71.2% 70%);
+    --color-jade-green-400: hsl(142.1 70.6% 60%);
+    --color-jade-green-500: hsl(141.9 71% 50%);
+    --color-jade-green-600: hsl(142.1 70.6% 40%);
+    --color-jade-green-700: hsl(142 71.2% 30%);
+    --color-jade-green-800: hsl(141.7 70.6% 20%);
+    --color-jade-green-900: hsl(142.7 72.5% 10%);
+    --color-jade-green-950: hsl(140.8 72.2% 7.1%);
+
+    --color-sunflower-gold-50: hsl(45 92.3% 94.9%);
+    --color-sunflower-gold-100: hsl(44.7 92.2% 90%);
+    --color-sunflower-gold-200: hsl(45.3 92.2% 80%);
+    --color-sunflower-gold-300: hsl(44.9 93.5% 70%);
+    --color-sunflower-gold-400: hsl(44.8 93.1% 60%);
+    --color-sunflower-gold-500: hsl(45.1 92.9% 50%);
+    --color-sunflower-gold-600: hsl(44.8 93.1% 40%);
+    --color-sunflower-gold-700: hsl(44.9 93.5% 30%);
+    --color-sunflower-gold-800: hsl(45.3 92.2% 20%);
+    --color-sunflower-gold-900: hsl(44.7 92.2% 10%);
+    --color-sunflower-gold-950: hsl(45.5 94.3% 6.9%);
+
+    --color-strawberry-red-50: hsl(0 84% 95.1%);
+    --color-strawberry-red-100: hsl(0 84.3% 90%);
+    --color-strawberry-red-200: hsl(0 84.3% 80%);
+    --color-strawberry-red-300: hsl(0 84.3% 70%);
+    --color-strawberry-red-400: hsl(0 84.3% 60%);
+    --color-strawberry-red-500: hsl(0 84.3% 50%);
+    --color-strawberry-red-600: hsl(0 84.3% 40%);
+    --color-strawberry-red-700: hsl(0 84.3% 30%);
+    --color-strawberry-red-800: hsl(0 84.3% 20%);
+    --color-strawberry-red-900: hsl(0 84.3% 10%);
+    --color-strawberry-red-950: hsl(0 83.3% 7.1%);
+}
